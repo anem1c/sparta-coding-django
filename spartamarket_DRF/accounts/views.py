@@ -22,6 +22,3 @@ class CreateUserAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)  # 성공 응답
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  # 에러 응답
-class AccountsLoginAPIView(APIView):
-    pass
-    
