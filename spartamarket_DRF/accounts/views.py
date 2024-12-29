@@ -22,3 +22,10 @@ class CreateUserAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)  # 성공 응답
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  # 에러 응답
+
+class GetUserAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request,username):
+        user_data = get_object_or_404(User,username=username)
+        serializer = UserSerializer(user_data)
+        return Response(serializer.data,status=status.HTTP_200_OK)
